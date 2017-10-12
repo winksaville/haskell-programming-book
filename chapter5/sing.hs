@@ -7,6 +7,6 @@ sndString :: [Char] -> [Char]
 sndString x = x ++ " over the rainbow"
 
 sing :: [Char]
-sing = if (x > y) then fstString x else sndString y
+sing = if (x < y) then fstString x else sndString y
     where x = "Singin"
           y = "SomeWhere"
