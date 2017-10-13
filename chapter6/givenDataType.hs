@@ -11,5 +11,5 @@ data Papu =
     deriving (Eq, Show)
 
 -- 1.
-phew = Papu "chases" True
+phew = Papu (Rocks "chases") (Yeah True)
 
