@@ -1,9 +1,9 @@
 module Trivial where
 
 data Trivial =
-    Trivial' | NotTrivial'
+    IsTrivial | NotTrivial
 
 instance Eq Trivial where
-    Trivial' == Trivial' = True
-    NotTrivial' == NotTrivial' = True
+    IsTrivial == IsTrivial = True
+    NotTrivial == NotTrivial = True
     _ == _ = False
