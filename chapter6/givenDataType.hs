@@ -16,3 +16,7 @@ phew = Papu (Rocks "chases") (Yeah True)
 -- 2.
 equalityForAll :: Papu -> Papu -> Bool
 equalityForAll p p' = p == p'
+
+-- 3.
+compareForAll :: Papu -> Papu -> Bool
+compareForAll p p' = p > p'
