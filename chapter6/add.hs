@@ -1,4 +1,10 @@
 module Add where
 
-add :: Num a => a -> a -> a
-add x y = if x > 1 then x + y else x
+add :: Int -> Int -> Int
+add x y = x + y
+
+addWeird :: Int -> Int -> Int
+addWeird x y = if x > 1 then x + y else x
+
+check' :: Int -> Int -> Bool
+check' x y = x == y
