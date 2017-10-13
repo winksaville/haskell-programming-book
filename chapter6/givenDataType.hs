@@ -1,14 +1,14 @@
 module GiveDataType where
 
 data Rocks =
-    Rocks String deriving (Eq, Show)
+    Rocks String deriving (Eq, Ord, Show)
 
 data Yeah =
-    Yeah Bool deriving (Eq, Show)
+    Yeah Bool deriving (Eq, Ord, Show)
 
 data Papu =
     Papu Rocks Yeah
-    deriving (Eq, Show)
+    deriving (Eq, Ord, Show)
 
 -- 1.
 phew = Papu (Rocks "chases") (Yeah True)
