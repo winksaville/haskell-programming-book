@@ -13,3 +13,6 @@ data Papu =
 -- 1.
 phew = Papu (Rocks "chases") (Yeah True)
 
+-- 2.
+equalityForAll :: Papu -> Papu -> Bool
+equalityForAll p p' = p == p'
