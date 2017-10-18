@@ -1,0 +1,40 @@
+module PointFree where
+
+add :: Int -> Int -> Int
+add x y = x + y
+
+addPF :: Int -> Int -> Int
+addPF = (+)
+
+addOne :: Int -> Int
+addOne = \x -> x + 1
+
+addOnePF :: Int -> Int
+addOnePF = (+1)
+
+arith :: Int -> Int
+arith x = addOne . addOne . addOne . negate . addOne $ x
+
+arith' :: Int -> Int
+arith' = addOne . addOne . addOne . negate . addOne
+
+main :: IO ()
+main = do
+    print (0 :: Int)
+    print (add 1 0)
+    print (addOne 0)
+    print (addOnePF 0)
+    print $ addOnePF 0
+    print ((addOne . addOne) 0)
+    print $ addOne . addOne $ 0
+    print ((addOnePF . addOne) 0)
+    print ((addOnePF . addOnePF) 0)
+    print (addOnePF . addOnePF $ 0)
+    print $ addOnePF . addOnePF $ 0
+    print (negate (addOne 0))
+    print ((negate . addOne) 0)
+    print $ negate . addOne $ 0
+    print ((addOne . addOne . addOne . negate . addOne) 0)
+    print $ addOne . addOne . addOne . negate . addOne $ 0
+    print $ arith 0
+    print $ arith' 1
