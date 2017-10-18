@@ -1,4 +1,4 @@
-module Chapter7_5 where
+module Chapter7_6 where
 
 fSub = flip (-)
 
