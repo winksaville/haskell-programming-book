@@ -33,3 +33,9 @@ myLines s =
     in  if (remaining == "") then
             if next == "" then [] else [next]
         else next : myLines remaining
+
+main :: IO ()
+main = do
+    print $ "Are they equal? " ++ show (myLines sentences == shouldEqual)
+    print $ "Are they equal? "
+        ++ show (myLines sentencesWithBlankLines == shouldEqual)
