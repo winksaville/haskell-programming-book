@@ -1,16 +1,20 @@
 -- Indentation error :(
---dividedBy :: Integral a => a -> a -> (a, a)
---dividedBy num denom = go num denom 0
---   where go n d count
---      | n < d = (count, n)
---      | otherwise = go (n - d) d (count + 1)
+dividedBy :: Integral a => a -> a -> (a, a)
+dividedBy num denom = go num denom 0
+   where
+ go n d count
+  | n < d = (count, n)
+  | otherwise = go (n - d) d (count + 1)
 
 dividedBy' :: Integral a => a -> a -> (a, a)
-dividedBy' num denom = go num denom 0
-  where
-    go n d count
-        | n < d = (count, n)
-        | otherwise = go (n - d) d (count + 1)
+dividedBy' num denom =
+    let
+ numerator = num
+ denominator = denom
+ go n d count
+  | n < d = (count, n)
+  | otherwise = go (n - d) d (count + 1)
+    in go numerator denominator 0
 
 dividedBy'' :: Integral a => a -> a -> (a, a)
 dividedBy'' num denom = go num denom 0 where
@@ -23,8 +27,8 @@ type Denominator = Integer
 type Quotient = Integer
 type Remainder = Integer
 
-dividedBy :: Numerator -> Denominator -> (Quotient, Remainder)
-dividedBy numerator denominator = go numerator denominator 0
+dividedBy''' :: Numerator -> Denominator -> (Quotient, Remainder)
+dividedBy''' numerator denominator = go numerator denominator 0
   where
     go n d count
          | n < d = (count, n)
