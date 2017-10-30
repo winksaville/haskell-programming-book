@@ -1,3 +1,5 @@
+module Chapter11_6_Exercises where
+
 data Size = Engines Integer deriving (Eq, Show)
 
 data Price = Price Integer deriving (Eq, Show)
