@@ -57,10 +57,10 @@ genTuple = do
     return (a, b)
 
 genTupleInts :: Gen (Int, Int)
-genTupleInts = genTuple :: Gen (Int, Int)
+genTupleInts = genTuple
 
 genTupleCharInt :: Gen (Char, Int)
-genTupleCharInt = genTuple :: Gen (Char, Int)
+genTupleCharInt = genTuple
 
 genThreeple :: (Arbitrary a, Arbitrary b, Arbitrary c) => Gen (a, b, c)
 genThreeple = do
@@ -76,7 +76,7 @@ genEither = do
     elements [Left a, Right b]
 
 genEitherInt :: Gen (Either Int Int)
-genEitherInt = genEither :: Gen (Either Int Int)
+genEitherInt = genEither
 
 genMaybe :: Arbitrary a => Gen (Maybe a)
 genMaybe = do
@@ -84,7 +84,7 @@ genMaybe = do
     elements [Nothing, Just a]
 
 genMaybeInt :: Gen (Maybe Int)
-genMaybeInt = genMaybe :: Gen (Maybe Int)
+genMaybeInt = genMaybe
 
 genMaybe' :: Arbitrary a => Gen (Maybe a)
 genMaybe' = do
@@ -92,7 +92,7 @@ genMaybe' = do
     frequency [ (1, return Nothing), (3, return (Just a))]
 
 genMaybe'Int :: Gen (Maybe Int)
-genMaybe'Int = genMaybe' :: Gen (Maybe Int)
+genMaybe'Int = genMaybe'
 
 prop_additionGreater :: Int -> Bool
 prop_additionGreater x = x + 1 > x
