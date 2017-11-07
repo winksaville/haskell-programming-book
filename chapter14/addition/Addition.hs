@@ -34,3 +34,83 @@ sayHello = hspec $ do
             multiplyBy (1 :: Int) 0 `shouldBe` 0
         it "4 multipled by 4 is 16" $ do
             multiplyBy (4 :: Int) 4 `shouldBe` 16
+
+trivialInt :: Gen Int
+trivialInt = return 1
+
+oneThroughThree :: Gen Int
+oneThroughThree = elements [1,2,2,2,2,2,2,3]
+
+genBool :: Gen Bool
+genBool = choose (False, True)
+
+genBool' :: Gen Bool
+genBool' = elements [False, True]
+
+genOrdering :: Gen Ordering
+genOrdering = elements [LT, EQ, GT]
+
+genTuple :: (Arbitrary a, Arbitrary b) => Gen (a, b)
+genTuple = do
+    a <- arbitrary
+    b <- arbitrary
+    return (a, b)
+
+genTupleInts :: Gen (Int, Int)
+genTupleInts = genTuple :: Gen (Int, Int)
+
+genTupleCharInt :: Gen (Char, Int)
+genTupleCharInt = genTuple :: Gen (Char, Int)
+
+genThreeple :: (Arbitrary a, Arbitrary b, Arbitrary c) => Gen (a, b, c)
+genThreeple = do
+    a <- arbitrary
+    b <- arbitrary
+    c <- arbitrary
+    return (a, b, c)
+
+genEither :: (Arbitrary a, Arbitrary b) => Gen (Either a b)
+genEither = do
+    a <- arbitrary
+    b <- arbitrary
+    elements [Left a, Right b]
+
+genEitherInt :: Gen (Either Int Int)
+genEitherInt = genEither :: Gen (Either Int Int)
+
+genMaybe :: Arbitrary a => Gen (Maybe a)
+genMaybe = do
+    a <- arbitrary
+    elements [Nothing, Just a]
+
+genMaybeInt :: Gen (Maybe Int)
+genMaybeInt = genMaybe :: Gen (Maybe Int)
+
+genMaybe' :: Arbitrary a => Gen (Maybe a)
+genMaybe' = do
+    a <- arbitrary
+    frequency [ (1, return Nothing), (3, return (Just a))]
+
+genMaybe'Int :: Gen (Maybe Int)
+genMaybe'Int = genMaybe' :: Gen (Maybe Int)
+
+prop_additionGreater :: Int -> Bool
+prop_additionGreater x = x + 1 > x
+
+prop_additionGreaterUntrue :: Int -> Bool
+prop_additionGreaterUntrue x = x + 0 > x
+
+runQc :: IO ()
+runQc = quickCheck prop_additionGreater
+
+runQc' :: IO ()
+runQc' = quickCheck prop_additionGreaterUntrue
+
+main :: IO ()
+main = do
+    s1 <- sample' (genMaybe :: Gen (Maybe Int))
+    putStrLn $ "sample' (genMaybe :: Gen (Maybe Int))=" ++ show s1
+    s2 <- sample' genMaybeInt
+    putStrLn $ "sample' genMaybeInt=" ++ show s2
+    s3 <- sample' genEitherInt
+    putStrLn $ "sample' genEitherInt=" ++ show s3
