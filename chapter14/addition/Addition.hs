@@ -1,6 +1,7 @@
 module Addition where
 
 import Test.Hspec
+import Test.QuickCheck
 
 dividedBy :: Integral a => a -> a -> (a, a)
 dividedBy num denom = go num denom 0
@@ -19,6 +20,8 @@ sayHello = hspec $ do
     describe "Addition" $ do
         it "1 + 1 is greater than 1" $ do
             ((1 :: Int) + (1 :: Int)) > 1 `shouldBe` True
+        it "x + 1 is alwyas greater than x" $ do
+            property $ \x -> x + 1 > (x :: Int)
         it "2 + 2 is equal to 4" $ do
             ((2 :: Int) + (2 :: Int)) `shouldBe` (4 :: Int)
         it "22 divided by 5 is 4 remainder 2" $ do
